@@ -104,16 +104,3 @@ pagination tags.  Here's an overview:
     Determines whether an invalid page raises an ``Http404`` or just sets the
     ``invalid_page`` context variable.  ``True`` does the former and ``False``
     does the latter.
-
-``PAGINATION_CLEAN_URL``
-    Enables "clean url" mode, with url like ``/object_list/pages/42/``
-    instead of ``/object_list/?page=42``
-
-``PAGINATION_URL_PATTERN``
-    Worked only if ``CLEAN_URL`` const equals ``True``
-    by default it equals ``r'(pages/)(?P<page>\d+)/$'`` couple examples below:
-    PATTERN: ``r'(/)(?P<page>\d+)/$'`` URL: ``/object_list/42/``
-    PATTERN: ``r'(page)(?P<page>\d+)/$'`` URL: ``/object_list/page42/``
-
-``PAGINATION_TEMPLATE_PATH``
-    Allows you to specify your own template to generate pagination widget
