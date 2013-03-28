@@ -1,8 +1,3 @@
-try:
-    set
-except NameError:
-    from sets import Set as set
-
 from django import template
 from django.http import Http404
 from django.core.paginator import Paginator, InvalidPage
@@ -228,7 +223,7 @@ def paginate(context, window=DEFAULT_WINDOW, hashtag=''):
             else:
                 to_return['getvars'] = ''
         return to_return
-    except KeyError, AttributeError:
+    except (KeyError, AttributeError):
         return {}
 
 if TEMPLATE_PATH:

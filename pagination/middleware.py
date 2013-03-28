@@ -1,7 +1,15 @@
 import re
+
 from django.conf import settings
-URL_PATTERN = getattr(settings, 'PAGINATION_URL_PATTERN', r'(pages/)(?P<page>\d+)/$')
+
+
+URL_PATTERN = getattr(
+    settings, 
+    'PAGINATION_URL_PATTERN', 
+    r'(page/)(?P<page>\d+)/$'
+)
 CLEAN_URL = getattr(settings, 'PAGINATION_CLEAN_URL', False)
+
 
 def get_page(self):
     """
@@ -13,6 +21,7 @@ def get_page(self):
     except (KeyError, ValueError, TypeError):
         return 1
 
+
 class PaginationMiddleware(object):
     """
     Inserts a variable representing the current page onto the request object if
@@ -20,6 +29,7 @@ class PaginationMiddleware(object):
     """
     def __init__(self):
         self.path = re.match(r'\(([\w/_\.]+)\)', URL_PATTERN).group(1)
+        self.pattern = re.compile(URL_PATTERN)
 
     def process_request(self, request):
 
@@ -30,8 +40,8 @@ class PaginationMiddleware(object):
             if page_path == '/':
                 page_path = ''
                 separator = '/'
-            match = re.compile(URL_PATTERN).search(request.path)
-            if match is not None:
+            match = self.pattern.search(request.path)
+            if match:
                 current_page = int(match.group('page'))
                 path = re.sub(URL_PATTERN, separator, request.path)
                 del request.path_info

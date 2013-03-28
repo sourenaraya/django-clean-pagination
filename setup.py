@@ -115,7 +115,7 @@ setup(
     keywords='pagination,django',
     author='Eric Florenzano',
     author_email='floguy@gmail.com',
-    url='http://django-pagination.googlecode.com/',
+    url='https://github.com/paxapy/django-pagination',
     license='BSD',
     packages=find_packages(),
     include_package_data=True,
