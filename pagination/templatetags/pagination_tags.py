@@ -11,7 +11,6 @@ DEFAULT_ORPHANS = getattr(settings, 'PAGINATION_DEFAULT_ORPHANS', 0)
 INVALID_PAGE_RAISES_404 = getattr(settings,
     'PAGINATION_INVALID_PAGE_RAISES_404', False)
 CLEAN_URL = getattr(settings, 'PAGINATION_CLEAN_URL', False)
-TEMPLATE_PATH = getattr(settings, 'PAGINATION_TEMPLATE_PATH' , False)
 
 def do_autopaginate(parser, token):
     """
@@ -219,16 +218,15 @@ def paginate(context, window=DEFAULT_WINDOW, hashtag=''):
             if 'page' in getvars:
                 del getvars['page']
             if len(getvars.keys()) > 0:
-                to_return['getvars'] = "&%s" % getvars.urlencode()
+                bit = '?' if CLEAN_URL else '&'
+                to_return['getvars'] = "{}{}".format(bit, getvars.urlencode())
             else:
                 to_return['getvars'] = ''
         return to_return
     except (KeyError, AttributeError):
         return {}
 
-if TEMPLATE_PATH:
-    template_path = TEMPLATE_PATH
-elif CLEAN_URL:
+if CLEAN_URL:
     template_path = 'pagination/pagination_clean_url.html'
 else:
     template_path = 'pagination/pagination.html'
