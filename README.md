@@ -112,7 +112,7 @@ pagination tags.  Here's an overview:
 ``PAGINATION_URL_PATTERN``
     Worked only if ``CLEAN_URL`` = ``True``,
     by default: ``r'(pages/)(?P<page>\d+)/$'``, 
-    couple examples below:
+    examples:
     
       PATTERN: r'(/)(?P<page>\d+)/$' => URL: /object_list/42/
       PATTERN: r'(page)(?P<page>\d+)/$' => URL: /object_list/page42/
