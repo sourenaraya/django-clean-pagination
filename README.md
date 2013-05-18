@@ -96,7 +96,7 @@ pagination tags.  Here's an overview:
 
 ``PAGINATION_DEFAULT_ORPHANS``
     The number of orphans allowed.  According to the Django documentation,
-    orphans are defined as::
+    orphans are defined as:
 
         The minimum number of items allowed on the last page, defaults to zero.
 
@@ -110,10 +110,11 @@ pagination tags.  Here's an overview:
     instead of ``/object_list/?page=42``
 
 ``PAGINATION_URL_PATTERN``
-    Worked only if ``CLEAN_URL`` const equals ``True``
-    by default it equals ``r'(pages/)(?P<page>\d+)/$'`` couple examples below:
-    PATTERN: ``r'(/)(?P<page>\d+)/$'`` URL: ``/object_list/42/``
-    PATTERN: ``r'(page)(?P<page>\d+)/$'`` URL: ``/object_list/page42/``
-
-``PAGINATION_TEMPLATE_PATH``
-    Allows you to specify your own template to generate pagination widget
+    Worked only if ``CLEAN_URL`` = ``True``,
+    by default: ``r'(pages/)(?P<page>\d+)/$'``, 
+    couple examples below:
+    
+      PATTERN: r'(/)(?P<page>\d+)/$' => URL: /object_list/42/
+      PATTERN: r'(page)(?P<page>\d+)/$' => URL: /object_list/page42/
+   
+   
