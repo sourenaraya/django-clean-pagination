@@ -1,5 +1,5 @@
 import re
-
+from django.core.urlresolvers import reverse
 from django.conf import settings
 
 
@@ -32,7 +32,8 @@ class PaginationMiddleware(object):
         self.pattern = re.compile(URL_PATTERN)
 
     def process_request(self, request):
-
+        if request.path.startswith(reverse('admin:index')): #disable pagination in admin site
+            return None
         if CLEAN_URL:
             current_page = 1
             separator = ''
